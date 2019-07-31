@@ -1,0 +1,15 @@
+<!-- <side-bar></side-bar>
+<topnav-bar></topnav-bar>
+<router-outlet></router-outlet>
+<custom-footer></custom-footer> -->
+
+
+
+<div *ngIf="isLoggedIn">
+    <side-bar></side-bar>
+    <topnav-bar></topnav-bar>
+    <content></content>
+    <!-- <router-outlet></router-outlet> -->
+    <custom-footer></custom-footer>
+</div>
+<router-outlet></router-outlet>
