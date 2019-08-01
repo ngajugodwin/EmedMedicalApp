@@ -12,6 +12,7 @@ namespace eMed_API.Data
         }
 
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
     }
