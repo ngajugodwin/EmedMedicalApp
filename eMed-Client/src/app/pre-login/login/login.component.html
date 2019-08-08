@@ -1,28 +1,41 @@
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div *ngIf="isLoggedIn">
+<div>
+  <!-- <a class="hiddenanchor" id="signup"></a>
+  <a class="hiddenanchor" id="signin"></a> -->
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+          <h1>Login Form</h1>
 
-  <form>
-    <div class="container">
-        <div class="form-group">
-            <label>Username: </label>
-            <input type="text" class="usernameTxt">
+          <div>
+            <input type="text" class="form-control" 
+              placeholder="Username" formControlName="username">
+          </div>
+          
+          <div>
+            <input type="password" class="form-control" 
+              placeholder="Password" formControlName="password">
           </div>
 
-          <div class="container">
-              <div class="form-group">
-                  <label>Password: </label>
-                  <input type="text" class="usernameTxt">
-                </div>
+          <div>
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log in</button>
           </div>
-          <button class="btn btn-primary" (click)="login()">Login</button>
+
+          <div class="clearfix"></div>
+          <div class="separator">
+            <p class="change_link">New to site?
+              <a class="to_register" [routerLink]="['/register']"> Create Account </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br>
+            <div>
+              <h1><i class="fa fa-paw"></i> eMed Solutions</h1>
+              <p>©2016 All Rights Reserved. Privacy and Terms</p>
+            </div>
+          </div>
+        </form>
+      </section>
     </div>
-
-  </form>
-
+  </div>
 </div>

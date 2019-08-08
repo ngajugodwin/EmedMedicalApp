@@ -1,5 +1,7 @@
+import { HomeComponent } from './pre-login/home/home.component';
 import { DashboardComponent } from './post-login/dashboard/dashboard.component';
 import { LoginComponent } from './pre-login/login/login.component';
+import { RegisterComponent } from './pre-login/register/register.component';
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,16 +21,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { PatientsRoutes } from './post-login/patients/patients.routing';
 import { PatientComponent } from './post-login/patients/patient/patient.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './_services/auth_service/auth.service';
+import { CommonModule } from '@angular/common';
+
 export const AppRoutes2: Routes = [
-//   { path: '', component: ContentComponent },
-//   { path: '', component: LoginComponent, pathMatch: 'full'},
-  { path: '', component: LoginComponent},
-  { path: 'content', component: ContentComponent },
+
+//   { path: '', component: LoginComponent},
+  { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
+  {path: 'login', component: LoginComponent },
+  {path: 'register', component: RegisterComponent },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+
 
   /*{ path: 'inbox',  component: Inbox },
   { path: 'about', component: About },*/
-  { path: '**', component: NoContentComponent }
+ // { path: '**', component: NoContentComponent }
 ];
 
 @NgModule({
@@ -43,6 +52,8 @@ export const AppRoutes2: Routes = [
       FontAwesomeDirective,
       Footer,
       NetworkActivitiesComponent,
+      RegisterComponent,
+      HomeComponent
       // PatientsComponent
    ],
    imports: [
@@ -50,9 +61,12 @@ export const AppRoutes2: Routes = [
       RouterModule.forRoot(AppRoutes2, {useHash: false}),
       HttpClientModule,
       PatientsModule,
+      FormsModule,
+      ReactiveFormsModule,
+      CommonModule
    ],
 
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -3,13 +3,12 @@
 <router-outlet></router-outlet>
 <custom-footer></custom-footer> -->
 
-
-
-<div *ngIf="isLoggedIn">
+<div *ngIf="loggedIn()">
     <side-bar></side-bar>
     <topnav-bar></topnav-bar>
-    <content></content>
-    <!-- <router-outlet></router-outlet> -->
-    <custom-footer></custom-footer>
+    <!-- <custom-footer></custom-footer> -->
 </div>
+
 <router-outlet></router-outlet>
+
+

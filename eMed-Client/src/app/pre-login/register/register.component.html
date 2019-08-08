@@ -1,0 +1,63 @@
+<div>    
+  <div class="login_wrapper">
+    <div>
+      <section class="login_content">
+        <form (ngSubmit)="register()" [formGroup]="registerForm">
+          <h1>Create an Account</h1>
+
+          <div>
+              <input type="text" class="form-control"
+                placeholder="Username" 
+                formControlName="username"
+                [ngClass]="{'is-invalid' : registerForm.get('username').errors && 
+                registerForm.get('username').touched}">
+
+              <div class="validation-feedback" 
+                *ngIf="registerForm.get('username').hasError('required') &&
+                registerForm.get('username').touched">The username field is required
+              </div>
+          </div>  
+          
+          <div>
+            <input type="password" class="form-control"
+              placeholder="Password" 
+              formControlName="password"
+              [ngClass]="{'is-invalid' : registerForm.get('password').errors && 
+              registerForm.get('password').touched}">
+          
+            <div class="validation-feedback" *ngIf="registerForm.get('password').hasError('required') && 
+              registerForm.get('password').touched">The password field is required
+            </div>
+            
+          </div>     
+
+          <div>
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+          </div>
+          
+
+          <div class="clearfix"></div>
+      
+          <div class="separator">
+            <p class="change_link">Already a member ?
+              <a class="to_register" [routerLink]="['/login']"> Log in </a>
+            </p>
+  
+            <div class="clearfix"></div>
+            <br>
+          
+            <div>
+              <h1><i class="fa fa-paw"></i> eMed Solutions</h1>
+              <p>©2016 All Rights Reserved. Privacy and Terms</p>
+            </div>
+          </div>
+  
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+
+                <!-- <p>{{patientForm.value | json}}</p>
+                <p>{{patientForm.status | json}}</p> -->
+

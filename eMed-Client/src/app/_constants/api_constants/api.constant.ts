@@ -9,3 +9,8 @@ export const PATIENT_URL = {
     ALL_PATIENTS: `${SERVER_END_POINT}/patients`,
     DELETE_PATIENT: `${SERVER_END_POINT}/patient/`,
 };
+
+export const AUTH_URL = {
+    LOGIN: `${SERVER_END_POINT}/auth/login`,
+    REGISTER: `${SERVER_END_POINT}/auth/register`
+};

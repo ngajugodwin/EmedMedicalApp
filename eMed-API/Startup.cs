@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using eMed_API.Data;
+using eMed_API.Data.Repositories._User;
 using eMed_API.Data.Repositories.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace eMed_API
 
             //Registering Services For Injection 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             //Authentication Middleware
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
