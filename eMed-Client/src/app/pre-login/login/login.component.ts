@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.pnotifyService.success('Success', 'Login successful');
         this.router.navigate(['/dashboard']);
      }, error => {
-       this.pnotifyService.error('Unauthorize', 'Failed to login');
+       this.pnotifyService.error('Unauthorize', error);
      });
     }
   }

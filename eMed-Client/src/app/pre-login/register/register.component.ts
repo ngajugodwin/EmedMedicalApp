@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
         this.authService.register(this.registerData).subscribe(() => {
           this.pnotifyService.success('Success', 'Registration Successful');
         }, error => {
-          this.pnotifyService.error('Error', 'Oops, something went wrong');
+          this.pnotifyService.error('Error', error);
         });
     }
   }

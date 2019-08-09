@@ -1,29 +1,37 @@
+// Component
 import { HomeComponent } from './pre-login/home/home.component';
 import { DashboardComponent } from './post-login/dashboard/dashboard.component';
 import { LoginComponent } from './pre-login/login/login.component';
 import { RegisterComponent } from './pre-login/register/register.component';
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { NoContentComponent } from './global/no-content/no-content.component';
 import { ContentComponent } from './content/content.component';
-import { RouterModule, Routes } from '@angular/router';
 import { TopNavBarComponent } from './menu/top-nav-bar/top-nav-bar.component';
-import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { Footer } from './global/footer/footer.component';
 import { NetworkActivitiesComponent } from './content/network-activities/network-activities.component';
-import * as jQuery from 'jquery';
+import { PatientComponent } from './post-login/patients/patient/patient.component';
 // import { PatientsComponent } from './patients/patients.component';
+
+// Routes
+import { PatientsRoutes } from './post-login/patients/patients.routing';
+
+// Service
+import { AuthService } from './_services/auth_service/auth.service';
+
+
+// Module
+import * as jQuery from 'jquery';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { PatientsModule } from './post-login/patients/patients.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PatientsRoutes } from './post-login/patients/patients.routing';
-import { PatientComponent } from './post-login/patients/patient/patient.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './_services/auth_service/auth.service';
 import { CommonModule } from '@angular/common';
+import { ErrorInterceptorProvider } from './_services/auth_service/error.interceptor';
 
 export const AppRoutes2: Routes = [
 
@@ -66,7 +74,7 @@ export const AppRoutes2: Routes = [
       CommonModule
    ],
 
-  providers: [AuthService],
+  providers: [AuthService, ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

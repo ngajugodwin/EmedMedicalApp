@@ -27,9 +27,8 @@
           
             <div class="validation-feedback" *ngIf="registerForm.get('password').hasError('required') && 
               registerForm.get('password').touched">The password field is required
-            </div>
-            
-          </div>     
+            </div>  
+          </div>   
 
           <div>
             <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
