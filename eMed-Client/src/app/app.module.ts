@@ -22,13 +22,14 @@ import { AuthService } from './_services/auth_service/auth.service';
 
 // Module
 import * as jQuery from 'jquery';
+// import { BsDropdownModule } from 'ngx-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeDirective } from 'ng2-fontawesome';
 import { PatientsModule } from './post-login/patients/patients.module';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ErrorInterceptorProvider } from './_services/auth_service/error.interceptor';
@@ -71,7 +72,8 @@ export const AppRoutes2: Routes = [
       PatientsModule,
       FormsModule,
       ReactiveFormsModule,
-      CommonModule
+      CommonModule,
+      // BsDropdownModule.forRoot()
    ],
 
   providers: [AuthService, ErrorInterceptorProvider],
