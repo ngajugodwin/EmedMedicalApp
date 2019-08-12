@@ -15,9 +15,29 @@ namespace eMed_API.Data.Repositories._User
         {
             _context = context;
         }
-        public Task<User> GetUserAsync(long id)
+
+        public async Task<User> AddAsync(User user)
         {
-            var user = _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if(user != null)
+            {
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                return user;
+            }
+
+            return null;
+        }
+
+        public async Task Delete(User user)
+        {
+
+           //  throw new NotImplementedException();
+        }
+
+        public async Task<User> GetUserAsync(long id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
                 return null;
@@ -25,9 +45,9 @@ namespace eMed_API.Data.Repositories._User
             return user;
         }
 
-        public Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return _context.Users.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
     }
 }

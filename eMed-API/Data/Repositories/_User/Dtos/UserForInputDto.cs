@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eMed_API.Models
+namespace eMed_API.Data.Repositories._User.Dtos
 {
-    public class User
+    // TODO: Check
+    public class UserForInputDto
     {
         public long Id { get; set; }
         public string Username { get; set; }

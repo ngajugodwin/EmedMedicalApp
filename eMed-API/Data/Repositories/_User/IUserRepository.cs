@@ -8,6 +8,10 @@ namespace eMed_API.Data.Repositories._User
 {
     public interface IUserRepository
     {
+        Task<User> AddAsync(User user);
+
+        Task Delete(User user);
+
         Task<List<User>> GetUsersAsync();
 
         Task<User> GetUserAsync(long id);

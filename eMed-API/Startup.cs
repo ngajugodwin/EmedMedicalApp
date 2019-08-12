@@ -4,9 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using eMed_API.Data;
 using eMed_API.Data.Repositories._User;
 using eMed_API.Data.Repositories.Authentication;
+using eMed_API.Data.Repositories.Emed;
 using eMed_API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -36,10 +38,18 @@ namespace eMed_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // AutoMapper
+            services.AddAutoMapper();
+
             //DB Connection
             services.AddDbContext<DataContext>(g => g.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // To review
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
 
             //CORS
             services.AddCors();
@@ -47,6 +57,7 @@ namespace eMed_API
             //Registering Services For Injection 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmedRepository, EmedRepository>();
 
             //Authentication Middleware
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
