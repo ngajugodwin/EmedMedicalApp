@@ -1,3 +1,6 @@
+// Guards
+import { AuthGuard } from './_shared/_guards/auth.guard';
+
 // Component
 import { HomeComponent } from './pre-login/home/home.component';
 import { DashboardComponent } from './post-login/dashboard/dashboard.component';
@@ -33,20 +36,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ErrorInterceptorProvider } from './_services/auth_service/error.interceptor';
+import { RedirectGuard } from './_shared/_guards/redirect.guard';
 
 export const AppRoutes2: Routes = [
+   { path: '', component: HomeComponent, canActivate: [RedirectGuard] },
+   {path: 'login', component: LoginComponent },
+   {path: 'register', component: RegisterComponent },
 
-//   { path: '', component: LoginComponent},
-  { path: '', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  {path: 'login', component: LoginComponent },
-  {path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
-
-
-  /*{ path: 'inbox',  component: Inbox },
-  { path: 'about', component: About },*/
- // { path: '**', component: NoContentComponent }
+   {
+      path: '',
+      runGuardsAndResolvers: 'always',
+      canActivate: [AuthGuard],
+      children: [
+         { path: 'dashboard', component: DashboardComponent },
+         { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+      ]
+   },
 ];
 
 @NgModule({
@@ -63,7 +68,6 @@ export const AppRoutes2: Routes = [
       NetworkActivitiesComponent,
       RegisterComponent,
       HomeComponent
-      // PatientsComponent
    ],
    imports: [
       BrowserModule,
@@ -76,7 +80,12 @@ export const AppRoutes2: Routes = [
       // BsDropdownModule.forRoot()
    ],
 
-  providers: [AuthService, ErrorInterceptorProvider],
+  providers: [
+     AuthService,
+     ErrorInterceptorProvider,
+     AuthGuard, 
+     RedirectGuard
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
